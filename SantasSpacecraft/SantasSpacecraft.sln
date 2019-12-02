@@ -1,0 +1,29 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuelCounterUpper", "day01\FuelCounterUpper\FuelCounterUpper.csproj", "{10F4446F-C668-465C-B821-611624F9F965}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuelCounterUpper.Tests", "day01\FuelCounterUpper.Tests\FuelCounterUpper.Tests.csproj", "{2124B38F-CF85-4587-A368-32C8EE672316}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "day01", "day01", "{41506C30-0F59-475F-AF90-2C5B52C16721}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{10F4446F-C668-465C-B821-611624F9F965}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10F4446F-C668-465C-B821-611624F9F965}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10F4446F-C668-465C-B821-611624F9F965}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10F4446F-C668-465C-B821-611624F9F965}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2124B38F-CF85-4587-A368-32C8EE672316}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2124B38F-CF85-4587-A368-32C8EE672316}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2124B38F-CF85-4587-A368-32C8EE672316}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2124B38F-CF85-4587-A368-32C8EE672316}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{10F4446F-C668-465C-B821-611624F9F965} = {41506C30-0F59-475F-AF90-2C5B52C16721}
+		{2124B38F-CF85-4587-A368-32C8EE672316} = {41506C30-0F59-475F-AF90-2C5B52C16721}
+	EndGlobalSection
+EndGlobal
