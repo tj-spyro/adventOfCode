@@ -19,11 +19,43 @@ namespace day01
 
         public int CalculateFuelFromFile(string filePath)
         {
+            return CalculateFuel(ReadModuleMassFromFile(filePath));
+        }
+
+        public IEnumerable<int> ReadModuleMassFromFile(string filePath)
+        {
             var lines = File.ReadAllLines(filePath);
 
-            var modules = lines.Select(l => int.Parse(l));
+            return lines.Select(l => int.Parse(l));
+        }
 
-            return CalculateFuel(modules);
+        public int CalculateTotalFuelForModule(int mass)
+        {
+            var moduleFuel = CalculateFuel(mass);
+            var extraFuel = CalculateExtraFuel(moduleFuel);
+
+            return moduleFuel + extraFuel;
+        }
+
+        public int CalculateExtraFuel(int fuel)
+        {
+            var extraFuel = 0;
+            while (true)
+            {
+                fuel = CalculateFuel(fuel);
+                if(fuel <= 0)
+                {
+                    return extraFuel;
+                }
+                extraFuel += fuel;
+            }
+        }
+
+        public int CalculateTotalFuelFromFile(string filePath)
+        {
+            var modules = ReadModuleMassFromFile(filePath);
+
+            return modules.Sum(CalculateTotalFuelForModule);
         }
     }
 }
