@@ -16,10 +16,10 @@ namespace CrossedWires
             var path1 = GetPath(input1);
             var path2 = GetPath(input2);
 
-            var intersections = path1.Keys.Intersect(path2.Keys).ToDictionary(i => i, i => path1[i]);
+            var intersections = GetIntersections(path1, path2);
 
-            var minimumDistance = intersections.Min(i => i.Value);
-            return intersections.First(i => i.Value == minimumDistance).Key;
+            var minimumDistance = intersections.Min(i => GetManhattanDistance(0, i.Key.x, 0, i.Key.y));
+            return intersections.First(i => GetManhattanDistance(0, i.Key.x, 0, i.Key.y) == minimumDistance).Key;
         }
 
         public int GetDistanceFromCentralPort(string input1, string input2)
@@ -29,13 +29,30 @@ namespace CrossedWires
             return GetManhattanDistance(0, intersection.x, 0, intersection.y);
         }
 
+        public int GetQuickestRoute(string input1, string input2)
+        {
+            var path1 = GetPath(input1);
+            var path2 = GetPath(input2);
+
+            var intersections = GetIntersections(path1, path2);
+
+            var combinedPathLength = intersections.ToDictionary(i => i.Key, i => i.Value + path2[i.Key]);
+
+            return combinedPathLength.Min(i => i.Value);
+        }
+
+        public Dictionary<(int x, int y), int> GetIntersections(Dictionary<(int x, int y), int> dict1, Dictionary<(int x, int y), int> dict2)
+        {
+            return dict1.Keys.Intersect(dict2.Keys).ToDictionary(i => i, i => dict1[i]);
+        }
+
         public Dictionary<(int x, int y), int> GetPath(string input)
         {
             var path = new Dictionary<(int x, int y), int>();
 
             var commands = GetCommands(input);
 
-            int x = 0, y = 0;
+            int x = 0, y = 0, pathLength = 0;
             foreach(var command in commands)
             {
                 var (dX, dY) = GetDirection(command);
@@ -45,7 +62,7 @@ namespace CrossedWires
                     x += dX;
                     y += dY;
 
-                    path.TryAdd((x, y), GetManhattanDistance(0, x, 0, y));
+                    path.TryAdd((x, y), ++pathLength);
                 }
             }
 
