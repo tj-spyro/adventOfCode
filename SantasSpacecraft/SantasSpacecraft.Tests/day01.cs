@@ -1,7 +1,7 @@
 using System.Linq;
 using NUnit.Framework;
 
-namespace day01.Tests
+namespace SantasSpacecraft.Tests.Day01
 {
     [TestFixture]
     public class When_calculating_fuel_for_a_module
@@ -12,8 +12,7 @@ namespace day01.Tests
         [TestCase(100756, ExpectedResult = 33583)]
         public decimal Then_the_correct_fuel_amount_is_returned(int mass)
         {
-            var sut = new FuelCounterUpper();
-            return sut.CalculateFuel(mass);
+            return FuelCounterUpper.FuelCounterUpper.CalculateFuel(mass);
         }
     }
 
@@ -23,11 +22,10 @@ namespace day01.Tests
         [Test]
         public void Then_the_correct_total_is_returned()
         {
-            var modules = new int[] { 12, 14, 1969, 100756 };
+            var modules = new[] { 12, 14, 1969, 100756 };
             var expected = new[] { 2, 2, 654, 33583 }.Sum();
 
-            var sut = new FuelCounterUpper();
-            var result = sut.CalculateFuel(modules);
+            var result = FuelCounterUpper.FuelCounterUpper.CalculateFuel(modules);
             Assert.That(result, Is.EqualTo(expected));
         }
     }
@@ -39,8 +37,7 @@ namespace day01.Tests
         [TestCase(33583, ExpectedResult = 16763)]
         public decimal Then_the_correct_fuel_amount_is_returned(int mass)
         {
-            var sut = new FuelCounterUpper();
-            return sut.CalculateExtraFuel(mass);
+            return FuelCounterUpper.FuelCounterUpper.CalculateExtraFuel(mass);
         }
     }
 
@@ -52,7 +49,7 @@ namespace day01.Tests
         [TestCase(100756, ExpectedResult = 50346)]
         public decimal Then_the_correct_fuel_amount_is_returned(int mass)
         {
-            var sut = new FuelCounterUpper();
+            var sut = new FuelCounterUpper.FuelCounterUpper();
             return sut.CalculateTotalFuelForModule(mass);
         }
     }
@@ -62,11 +59,11 @@ namespace day01.Tests
         [Test]
         public void Then_we_get_the_total_fuel()
         {
-            var testFilePath = "..//..//..//TestData//input.txt";
+            var testFilePath = "..//..//..//TestData//day01.txt";
 
             var expected = 3394032;
 
-            var sut = new FuelCounterUpper();
+            var sut = new FuelCounterUpper.FuelCounterUpper();
             var result = sut.CalculateFuelFromFile(testFilePath);
             Assert.That(result, Is.EqualTo(expected));
         }
@@ -77,11 +74,11 @@ namespace day01.Tests
         [Test]
         public void Then_we_get_the_total_fuel()
         {
-            var testFilePath = "..//..//..//TestData//input.txt";
+            var testFilePath = "..//..//..//TestData//day01.txt";
 
             var expected = 5088176;
 
-            var sut = new FuelCounterUpper();
+            var sut = new FuelCounterUpper.FuelCounterUpper();
             var result = sut.CalculateTotalFuelFromFile(testFilePath);
             Assert.That(result, Is.EqualTo(expected));
         }

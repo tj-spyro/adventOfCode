@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="TestData\day01.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\day01.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="nunit" Version="3.12.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.13.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
@@ -14,8 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CrossedWires\CrossedWires.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="TestData\" />
+    <ProjectReference Include="..\FuelCounterUpper\FuelCounterUpper.csproj" />
+    <ProjectReference Include="..\Intcode\Intcode.csproj" />
   </ItemGroup>
 </Project>

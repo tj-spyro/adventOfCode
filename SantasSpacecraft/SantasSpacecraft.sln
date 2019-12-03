@@ -1,21 +1,14 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuelCounterUpper", "day01\FuelCounterUpper\FuelCounterUpper.csproj", "{10F4446F-C668-465C-B821-611624F9F965}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.87
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FuelCounterUpper", "FuelCounterUpper\FuelCounterUpper.csproj", "{10F4446F-C668-465C-B821-611624F9F965}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuelCounterUpper.Tests", "day01\FuelCounterUpper.Tests\FuelCounterUpper.Tests.csproj", "{2124B38F-CF85-4587-A368-32C8EE672316}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intcode", "Intcode\Intcode.csproj", "{D7C1F240-F9E8-4852-9821-419BAE49C1A9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "day01", "day01", "{41506C30-0F59-475F-AF90-2C5B52C16721}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrossedWires", "CrossedWires\CrossedWires.csproj", "{A381462E-981F-4777-B267-150954CDE6DC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "day02", "day02", "{E3459E43-C3FA-47AB-A769-3243148B9799}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intcode", "day02\Intcode\Intcode.csproj", "{D7C1F240-F9E8-4852-9821-419BAE49C1A9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intcode.Tests", "day02\Intcode.Tests\Intcode.Tests.csproj", "{CD190C95-58AE-4B19-A450-18036BEF844F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrossedWires", "CrossedWires\CrossedWires.csproj", "{A381462E-981F-4777-B267-150954CDE6DC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day03.Tests", "day03.Tests\day03.Tests.csproj", "{E5B168BB-0DC5-4DFB-8B04-6BFC56918BE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SantasSpacecraft.Tests", "SantasSpacecraft.Tests\SantasSpacecraft.Tests.csproj", "{E5B168BB-0DC5-4DFB-8B04-6BFC56918BE1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,18 +20,10 @@ Global
 		{10F4446F-C668-465C-B821-611624F9F965}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10F4446F-C668-465C-B821-611624F9F965}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10F4446F-C668-465C-B821-611624F9F965}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2124B38F-CF85-4587-A368-32C8EE672316}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2124B38F-CF85-4587-A368-32C8EE672316}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2124B38F-CF85-4587-A368-32C8EE672316}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2124B38F-CF85-4587-A368-32C8EE672316}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D7C1F240-F9E8-4852-9821-419BAE49C1A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D7C1F240-F9E8-4852-9821-419BAE49C1A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7C1F240-F9E8-4852-9821-419BAE49C1A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7C1F240-F9E8-4852-9821-419BAE49C1A9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CD190C95-58AE-4B19-A450-18036BEF844F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CD190C95-58AE-4B19-A450-18036BEF844F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CD190C95-58AE-4B19-A450-18036BEF844F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CD190C95-58AE-4B19-A450-18036BEF844F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A381462E-981F-4777-B267-150954CDE6DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A381462E-981F-4777-B267-150954CDE6DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A381462E-981F-4777-B267-150954CDE6DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -48,10 +33,10 @@ Global
 		{E5B168BB-0DC5-4DFB-8B04-6BFC56918BE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5B168BB-0DC5-4DFB-8B04-6BFC56918BE1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{10F4446F-C668-465C-B821-611624F9F965} = {41506C30-0F59-475F-AF90-2C5B52C16721}
-		{2124B38F-CF85-4587-A368-32C8EE672316} = {41506C30-0F59-475F-AF90-2C5B52C16721}
-		{D7C1F240-F9E8-4852-9821-419BAE49C1A9} = {E3459E43-C3FA-47AB-A769-3243148B9799}
-		{CD190C95-58AE-4B19-A450-18036BEF844F} = {E3459E43-C3FA-47AB-A769-3243148B9799}
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A03D0E10-FC14-4762-91FF-9B598B999187}
 	EndGlobalSection
 EndGlobal

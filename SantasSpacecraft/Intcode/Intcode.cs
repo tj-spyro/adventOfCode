@@ -32,9 +32,9 @@ namespace Intcode
         {
             var initialState = (int[])GetState().Clone();
 
-            for (int i = 0; i < 100; i++)
+            for (var i = 0; i < 100; i++)
             {
-                for (int j = 0; j < 100; j++)
+                for (var j = 0; j < 100; j++)
                 {
                     SetValue(1, i);
                     SetValue(2, j);
@@ -50,7 +50,7 @@ namespace Intcode
             return 0;
         }
 
-        public int[] SetInitialState(string str)
+        private static int[] SetInitialState(string str)
         {
             return str.Split(",").Select(s => int.Parse(s.Trim())).ToArray();
         }
@@ -61,7 +61,7 @@ namespace Intcode
             SetValue(2, 2);
         }
 
-        public void ResetState(int[] initialState)
+        private void ResetState(int[] initialState)
         {
             for (int i = 0; i < initialState.Length; i++)
             {
@@ -69,7 +69,7 @@ namespace Intcode
             }
         }
 
-        public bool HandleInstruction(int instructionPointer, out int nextInstructionPoninter)
+        private bool HandleInstruction(int instructionPointer, out int nextInstructionPoninter)
         {
             var oppCode = (OppCode)_memory[instructionPointer];
 
@@ -93,7 +93,7 @@ namespace Intcode
             return true;
         }
 
-        public void Add(int instructionPointer)
+        private void Add(int instructionPointer)
         {
             var value1Address = GetValue(instructionPointer + 1);
             var value2Address = GetValue(instructionPointer + 2);
@@ -102,7 +102,7 @@ namespace Intcode
             SetValue(value3Address, GetValue(value1Address) + GetValue(value2Address));
         }
 
-        public void Multiply(int instructionPointer)
+        private void Multiply(int instructionPointer)
         {
             var value1Address = GetValue(instructionPointer + 1);
             var value2Address = GetValue(instructionPointer + 2);

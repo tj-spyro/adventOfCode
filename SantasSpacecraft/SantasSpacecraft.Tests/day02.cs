@@ -2,7 +2,7 @@
 using System.Linq;
 using NUnit.Framework;
 
-namespace Intcode.Tests
+namespace SantasSpacecraft.Tests.Day02
 {
     public class When_handling_oppcode_1_add
 	{
@@ -11,7 +11,7 @@ namespace Intcode.Tests
 		{
 			var testString = "1,9,10,3,2,3,11,0,99,30,40,50";
 
-			var sut = new Intcode(testString);
+			var sut = new Intcode.Intcode(testString);
 
 			sut.ProcessInstructions();
 
@@ -29,7 +29,7 @@ namespace Intcode.Tests
 		{
 			var testString = "1,9,10,3,2,3,11,0,99,30,40,50";
 
-			var sut = new Intcode(testString);
+			var sut = new Intcode.Intcode(testString);
 
 			sut.ProcessInstructions();
 
@@ -48,7 +48,7 @@ namespace Intcode.Tests
         [TestCase("1,1,1,4,99,5,6,0,99", "30,1,1,4,2,5,6,0,99")]
         public void StatesAreUpdated(string intitialState, string expectedEndState)
 		{
-			var sut = new Intcode(intitialState);
+			var sut = new Intcode.Intcode(intitialState);
 			sut.ProcessInstructions();
 			var result = string.Join(",", sut.GetState());
 
@@ -58,16 +58,16 @@ namespace Intcode.Tests
 
     public class When_processing_the_test_state
     {
-        private Intcode _intCode;
+        private Intcode.Intcode _intCode;
 
         [SetUp]
         public void Setup()
         {
-            var testFilePath = "..//..//..//TestData//input.txt";
+            var testFilePath = "..//..//..//TestData//day02.txt";
 
             var initialState = File.ReadLines(testFilePath).First();
 
-            _intCode = new Intcode(initialState);
+            _intCode = new Intcode.Intcode(initialState);
 
             _intCode.ResetState();
             _intCode.ProcessInstructions();
@@ -84,17 +84,17 @@ namespace Intcode.Tests
 
     public class When_finding_the_correct_noun_verb_combination
     {
-        private Intcode _intCode;
+        private Intcode.Intcode _intCode;
         private readonly int _expectedOutput = 19690720;
 
         [Test]
         public void Then_result_at_position_zero_is_correct()
         {
-            var testFilePath = "..//..//..//TestData//input.txt";
+            var testFilePath = "..//..//..//TestData//day02.txt";
 
             var initialState = File.ReadLines(testFilePath).First();
 
-            _intCode = new Intcode(initialState);
+            _intCode = new Intcode.Intcode(initialState);
 
             var nounVerb = _intCode.FindNounVerb(_expectedOutput);
 

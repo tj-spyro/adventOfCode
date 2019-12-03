@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace day01
+namespace FuelCounterUpper
 {
     public class FuelCounterUpper
     {
-        public int CalculateFuel(int mass)
+        public static int CalculateFuel(int mass)
         {
             return (int) Math.Floor((decimal)mass / 3) - 2;
         }
 
-        public int CalculateFuel(IEnumerable<int> modules)
+        public static int CalculateFuel(IEnumerable<int> modules)
         {
             return modules.Sum(CalculateFuel);
         }
@@ -22,7 +22,7 @@ namespace day01
             return CalculateFuel(ReadModuleMassFromFile(filePath));
         }
 
-        public IEnumerable<int> ReadModuleMassFromFile(string filePath)
+        private IEnumerable<int> ReadModuleMassFromFile(string filePath)
         {
             var lines = File.ReadAllLines(filePath);
 
@@ -37,7 +37,7 @@ namespace day01
             return moduleFuel + extraFuel;
         }
 
-        public int CalculateExtraFuel(int fuel)
+        public static int CalculateExtraFuel(int fuel)
         {
             var extraFuel = 0;
             while (true)

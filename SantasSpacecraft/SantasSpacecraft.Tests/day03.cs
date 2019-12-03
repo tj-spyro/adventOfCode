@@ -2,7 +2,7 @@ using System.IO;
 using System.Linq;
 using NUnit.Framework;
 
-namespace day03.Tests
+namespace SantasSpacecraft.Tests.Day03
 {
     public class When_getting_manhattan_distance
     {
@@ -11,8 +11,7 @@ namespace day03.Tests
         [TestCase(10, 5, 3, 12, 14)]
         public void Then_distance_is_returned(int x1, int x2, int y1, int y2, int expected)
         {
-            var sut = new CrossedWires.CrossedWires();
-            var result = sut.GetManhattanDistance(x1, x2, y1, y2);
+            var result = CrossedWires.CrossedWires.GetManhattanDistance(x1, x2, y1, y2);
 
             Assert.That(result, Is.EqualTo(expected));
         }
@@ -36,7 +35,7 @@ namespace day03.Tests
         [Test]
         public void Get_result()
         {
-            var testFilePath = "..//..//..//TestData//input.txt";
+            var testFilePath = "..//..//..//TestData//day03.txt";
 
             var inputs = File.ReadLines(testFilePath).ToArray();
 
@@ -51,7 +50,7 @@ namespace day03.Tests
         [Test]
         public void Get_result_part2()
         {
-            var testFilePath = "..//..//..//TestData//input.txt";
+            var testFilePath = "..//..//..//TestData//day03.txt";
 
             var inputs = File.ReadLines(testFilePath).ToArray();
 
