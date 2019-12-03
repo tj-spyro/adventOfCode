@@ -13,9 +13,9 @@ namespace Intcode.Tests
 
 			var sut = new Intcode(testString);
 
-			sut.ProcessState();
+			sut.ProcessInstructions();
 
-			var result = sut.State[3];
+			var result = sut.GetState()[3];
 			var expected = 70;
 
 			Assert.That(result, Is.EqualTo(expected));
@@ -31,9 +31,9 @@ namespace Intcode.Tests
 
 			var sut = new Intcode(testString);
 
-			sut.ProcessState();
+			sut.ProcessInstructions();
 
-			var result = sut.State[0];
+			var result = sut.GetState()[0];
 			var expected = 3500;
 
 			Assert.That(result, Is.EqualTo(expected));
@@ -49,8 +49,8 @@ namespace Intcode.Tests
         public void StatesAreUpdated(string intitialState, string expectedEndState)
 		{
 			var sut = new Intcode(intitialState);
-			sut.ProcessState();
-			var result = string.Join(",", sut.State);
+			sut.ProcessInstructions();
+			var result = string.Join(",", sut.GetState());
 
 			Assert.That(result, Is.EqualTo(expectedEndState));
 		}
@@ -70,15 +70,39 @@ namespace Intcode.Tests
             _intCode = new Intcode(initialState);
 
             _intCode.ResetState();
-            _intCode.ProcessState();
+            _intCode.ProcessInstructions();
         }
 
         [Test]
         public void Then_result_at_position_zero_is_correct()
         {
-            var result = _intCode.State[0];
+            var result = _intCode.GetState()[0];
 
             Assert.That(result, Is.EqualTo(5110675));
+        }
+    }
+
+    public class When_finding_the_correct_noun_verb_combination
+    {
+        private Intcode _intCode;
+        private readonly int _expectedOutput = 19690720;
+
+        [Test]
+        public void Then_result_at_position_zero_is_correct()
+        {
+            var testFilePath = "..//..//..//TestData//input.txt";
+
+            var initialState = File.ReadLines(testFilePath).First();
+
+            _intCode = new Intcode(initialState);
+
+            var nounVerb = _intCode.FindNounVerb(_expectedOutput);
+
+            var result = _intCode.GetState()[0];
+
+            Assert.That(result, Is.EqualTo(_expectedOutput));
+
+            Assert.That(nounVerb, Is.EqualTo(4847));
         }
     }
 }

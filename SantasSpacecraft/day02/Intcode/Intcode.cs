@@ -7,77 +7,118 @@ namespace Intcode
     {
         public Intcode(string str)
         {
-            State = ConvertStringToState(str);
+            _memory = SetInitialState(str);
         }
 
-        public int[] State;
+        private readonly int[] _memory;
 
-        public void ProcessState()
+        public int[] GetState()
+        {
+            return _memory;
+        }
+
+        public void ProcessInstructions()
         {
             var i = 0;
             var continueProcessing = true;
             while (continueProcessing)
             {
-                continueProcessing = HandleSection(i);
-                i += 4;
+                continueProcessing = HandleInstruction(i, out int j);
+                i = j;
             }
         }
 
-        public int[] ConvertStringToState(string str)
+        public int FindNounVerb(int targetOutput)
+        {
+            var initialState = (int[])GetState().Clone();
+
+            for (int i = 0; i < 100; i++)
+            {
+                for (int j = 0; j < 100; j++)
+                {
+                    SetValue(1, i);
+                    SetValue(2, j);
+                    ProcessInstructions();
+                    var result = GetState()[0];
+                    if (result == targetOutput)
+                    {
+                        return (100 * i) + j;
+                    }
+                    ResetState(initialState);
+                }
+            }
+            return 0;
+        }
+
+        public int[] SetInitialState(string str)
         {
             return str.Split(",").Select(s => int.Parse(s.Trim())).ToArray();
         }
 
         public void ResetState()
         {
-            State[1] = 12;
-            State[2] = 2;
+            SetValue(1, 12);
+            SetValue(2, 2);
         }
 
-        public bool HandleSection(int startPosition)
+        public void ResetState(int[] initialState)
         {
-            var oppCode = (OppCode)State[startPosition];
-
-            if (oppCode == OppCode.Terminate)
+            for (int i = 0; i < initialState.Length; i++)
             {
-                return false;
+                SetValue(i, initialState[i]);
             }
+        }
 
-            var inputPosition1 = State[startPosition + 1];
-            var inputPosition2 = State[startPosition + 2];
-            var outputPosition = State[startPosition + 3];
+        public bool HandleInstruction(int instructionPointer, out int nextInstructionPoninter)
+        {
+            var oppCode = (OppCode)_memory[instructionPointer];
 
-            var inputValue1 = State[inputPosition1];
-            var inputValue2 = State[inputPosition2];
-
-            int result;
             switch (oppCode)
             {
+                case OppCode.Terminate:
+                    nextInstructionPoninter = instructionPointer + 1;
+                    return false;
                 case OppCode.Add:
-                    result = Add(inputValue1, inputValue2);
+                    Add(instructionPointer);
+                    nextInstructionPoninter = instructionPointer + 4;
                     break;
                 case OppCode.Multiply:
-                    result = Multiply(inputValue1, inputValue2);
+                    Multiply(instructionPointer);
+                    nextInstructionPoninter = instructionPointer + 4;
                     break;
-                case OppCode.Terminate:
-                    return false;
                 default:
-                    throw new ApplicationException();
+                    throw new ApplicationException($"Unknown OppCode {oppCode}");
             }
-
-            State[outputPosition] = result;
 
             return true;
         }
 
-        public int Add(int input1, int input2)
+        public void Add(int instructionPointer)
         {
-            return input1 + input2;
+            var value1Address = GetValue(instructionPointer + 1);
+            var value2Address = GetValue(instructionPointer + 2);
+            var value3Address = GetValue(instructionPointer + 3);
+
+            SetValue(value3Address, GetValue(value1Address) + GetValue(value2Address));
         }
 
-        public int Multiply(int input1, int input2)
+        public void Multiply(int instructionPointer)
         {
-            return input1 * input2;
+            var value1Address = GetValue(instructionPointer + 1);
+            var value2Address = GetValue(instructionPointer + 2);
+            var value3Address = GetValue(instructionPointer + 3);
+
+            SetValue(value3Address, GetValue(value1Address) * GetValue(value2Address));
+        }
+
+        private int GetValue(int address)
+        {
+            return _memory[address];
+        }
+
+        private void SetValue(int address, int newValue)
+        {
+            _memory[address] = newValue;
         }
     }
 
