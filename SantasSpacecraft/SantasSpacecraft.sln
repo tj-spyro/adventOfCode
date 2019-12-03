@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intcode", "day02\Intcode\In
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intcode.Tests", "day02\Intcode.Tests\Intcode.Tests.csproj", "{CD190C95-58AE-4B19-A450-18036BEF844F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrossedWires", "CrossedWires\CrossedWires.csproj", "{A381462E-981F-4777-B267-150954CDE6DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day03.Tests", "day03.Tests\day03.Tests.csproj", "{E5B168BB-0DC5-4DFB-8B04-6BFC56918BE1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +39,14 @@ Global
 		{CD190C95-58AE-4B19-A450-18036BEF844F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD190C95-58AE-4B19-A450-18036BEF844F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD190C95-58AE-4B19-A450-18036BEF844F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A381462E-981F-4777-B267-150954CDE6DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A381462E-981F-4777-B267-150954CDE6DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A381462E-981F-4777-B267-150954CDE6DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A381462E-981F-4777-B267-150954CDE6DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5B168BB-0DC5-4DFB-8B04-6BFC56918BE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5B168BB-0DC5-4DFB-8B04-6BFC56918BE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5B168BB-0DC5-4DFB-8B04-6BFC56918BE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5B168BB-0DC5-4DFB-8B04-6BFC56918BE1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{10F4446F-C668-465C-B821-611624F9F965} = {41506C30-0F59-475F-AF90-2C5B52C16721}
