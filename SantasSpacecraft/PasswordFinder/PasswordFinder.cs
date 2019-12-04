@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PasswordFinder
 {
@@ -32,16 +33,7 @@ namespace PasswordFinder
 
         public static bool HasAdjacentMatchingDigits(int input)
         {
-            var intArray = GetIntArray(input);
-            for (var i = 1; i < GetNumberDigits(input); i++)
-            {
-                if (intArray[i] == intArray[i - 1])
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return input.ToString().GroupBy(x => x).Any(g => g.Count() == 2);
         }
 
         public static bool DigitsIncrease(int input)

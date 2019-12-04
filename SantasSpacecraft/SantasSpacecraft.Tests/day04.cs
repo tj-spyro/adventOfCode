@@ -17,6 +17,9 @@ namespace SantasSpacecraft.Tests.Day04
         [TestCase(22, true)]
         [TestCase(122345, true)]
         [TestCase(123456, false)]
+        [TestCase(112233, true)]
+        [TestCase(123444, false)]
+        [TestCase(111122, true)]
         public void Then_checking_for_adjacent_matching_digits_returns_correct(int input, bool expected)
         {
             var result = PasswordFinder.PasswordFinder.HasAdjacentMatchingDigits(input);
@@ -32,7 +35,6 @@ namespace SantasSpacecraft.Tests.Day04
             Assert.That(result, Is.EqualTo(expected));
         }
 
-        [TestCase(111111, true)]
         [TestCase(223450, false)]
         [TestCase(123789, false)]
         public void The_checking_all_rules_returns_correct(int input, bool expected)
@@ -45,7 +47,7 @@ namespace SantasSpacecraft.Tests.Day04
     [TestFixture]
     public class SolveProblem
     {
-        [TestCase(367479, 893698, 495)]
+        [TestCase(367479, 893698, 305)]
         public void Get_answer_part1(int lowerLimit, int upperLimit, int expected)
         {
             var result = PasswordFinder.PasswordFinder.GetNumberOfPotentialValidPasswords(lowerLimit, upperLimit);
