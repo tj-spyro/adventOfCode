@@ -1,7 +1,5 @@
 ﻿using System.IO;
 using System.Linq;
-using Intcode;
-using Intcode.Memory;
 using NUnit.Framework;
 using OrbitalComputer;
 
@@ -21,6 +19,21 @@ namespace SantasSpacecraft.Tests.Day06
             orbitComputer.Initialise();
 
             return orbitComputer.PopulateIndirectOrbits(orbiter).Count;
+        }
+    }
+
+    public class When_calculating_orbital_transfers
+    {
+        private readonly string[] _testInput = new[]
+            {"COM)B", "B)C", "C)D", "D)E", "E)F", "B)G", "G)H", "D)I", "E)J", "J)K", "K)L", "K)YOU", "I)SAN"};
+        
+        [TestCase("YOU", "SAN", ExpectedResult = 4)]
+        public int Then_count_is_correct(string from, string to)
+        {
+            var orbitComputer = new OrbitComputer(_testInput);
+            orbitComputer.Initialise();
+
+            return orbitComputer.CalculateOrbitalTransfers(from, to);
         }
     }
 
@@ -48,10 +61,15 @@ namespace SantasSpacecraft.Tests.Day06
             Assert.That(result, Is.EqualTo(453028));
         }
 
-        [Test]
-        public void Part_2()
+        [TestCase("YOU", "SAN")]
+        public void Part_2(string from, string to)
         {
-            
+            var orbitComputer = new OrbitComputer(_testInput);
+            orbitComputer.Initialise();
+
+            var result = orbitComputer.CalculateOrbitalTransfers(from, to);
+
+            Assert.That(result, Is.EqualTo(562));
         }
     }
 }

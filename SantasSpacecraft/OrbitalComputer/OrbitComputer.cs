@@ -12,7 +12,7 @@ namespace OrbitalComputer
 
         private const string UniversalCentreOfMass = "COM";
 
-        private Dictionary<string, (string direct, List<string> indirect)> orbits;
+        private Dictionary<string, (string direct, List<string> indirect)> _orbits;
 
         public OrbitComputer(string[] input)
         {
@@ -21,17 +21,22 @@ namespace OrbitalComputer
 
         public void Initialise()
         {
-            if (orbits != null)
+            if (_orbits != null)
             {
                 return;
             }
-            orbits = new Dictionary<string, (string direct, List<string> inDirect)>();
+            _orbits = new Dictionary<string, (string direct, List<string> inDirect)>();
             foreach (var s in _input)
             {
                 var orbiter = s.Substring(s.IndexOf(OrbitDelimiter, StringComparison.Ordinal) + 1);
                 var orbitee = s.Substring(0, s.IndexOf(OrbitDelimiter, StringComparison.Ordinal));
 
-                orbits.Add(orbiter, (orbitee, new List<string>()));
+                _orbits.Add(orbiter, (orbitee, new List<string>()));
+            }
+
+            foreach (var orbit in _orbits)
+            {
+                PopulateIndirectOrbits(orbit.Key);
             }
         }
 
@@ -39,12 +44,21 @@ namespace OrbitalComputer
         {
             Initialise();
 
-            foreach (var orbit in orbits)
-            {
-                PopulateIndirectOrbits(orbit.Key);
-            }
+            return _orbits.Sum(o => o.Value.indirect.Count);
+        }
 
-            return orbits.Sum(o => o.Value.indirect.Count);
+        public int CalculateOrbitalTransfers(string from, string to)
+        {
+            Initialise();
+
+            var fromOrbits = _orbits[from].indirect;
+            var toOrbits = _orbits[to].indirect;
+
+            var totalOrbits = fromOrbits.Concat(toOrbits).ToList();
+
+            var sharedOrbits = totalOrbits.GroupBy(o => o).Where(g => g.Count() > 1).Sum(g => g.Count());
+
+            return totalOrbits.Count - sharedOrbits - 2;
         }
 
         public List<string> PopulateIndirectOrbits(string orbiter)
@@ -54,9 +68,9 @@ namespace OrbitalComputer
                 return new List<string>();
             }
 
-            var indirects = orbits[orbiter].indirect;
+            var indirects = _orbits[orbiter].indirect;
 
-            for (var o = orbiter; orbits.ContainsKey(o); o = orbits[o].direct)
+            for (var o = orbiter; _orbits.ContainsKey(o); o = _orbits[o].direct)
             {
                 indirects.Add(o);
             }
