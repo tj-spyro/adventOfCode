@@ -18,9 +18,9 @@ namespace Intcode
             _memory = memory;
         }
 
-        private int? GetInput()
+        private int GetInput()
         { 
-            return _inputQueue. Count == 0 ? (int?) null : _inputQueue.Dequeue();
+            return _inputQueue.Dequeue();
         }
 
     private readonly Queue<int> _inputQueue = new Queue<int>();
@@ -28,6 +28,7 @@ namespace Intcode
         public void AddToInputQueue(int input)
         {
             _inputQueue.Enqueue(input);
+            _waiting = false;
         }
 
         private int _instructionPointer;
@@ -46,9 +47,22 @@ namespace Intcode
 
         private readonly IMemory _memory;
 
+        private bool _sentOutput;
+        private bool _waiting;
+
+        public bool Halted;
+
         public void ProcessInstructions()
         {
             while (HandleInstruction())
+            {
+            }
+        }
+
+        public void ProcessInstructionsToOutput()
+        {
+            _sentOutput = false;
+            while (!_waiting && !_sentOutput && HandleInstruction())
             {
             }
         }
@@ -79,14 +93,24 @@ namespace Intcode
 
             if (oppCode == OppCode.Input)
             {
-                _memory.SetValue(_memory.GetValue(NextPointer()), GetInput().Value);
+                if (_inputQueue.Count > 0)
+                {
+                    
+                    _memory.SetValue(_memory.GetValue(NextPointer()), GetInput());
+                }
+                else
+                {
+                    _waiting = true;
+                }
             }
             else if (oppCode == OppCode.Output)
             {
                 _output.Add(GetValue(modes[0]));
+                _sentOutput = true;
             }
             else if (oppCode == OppCode.Terminate)
             {
+                Halted = true;
                 return false;
             }
             else
@@ -127,6 +151,7 @@ namespace Intcode
                 }
             }
 
+            // ReSharper disable once AssignmentIsFullyDiscarded
             _ = NextPointer();
 
             return true;

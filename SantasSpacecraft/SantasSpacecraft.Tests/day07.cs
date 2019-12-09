@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using System.Linq;
 using NUnit.Framework;
-using OrbitalComputer;
 using ThrusterAmplification;
 
 namespace SantasSpacecraft.Tests.Day07
@@ -16,6 +15,19 @@ namespace SantasSpacecraft.Tests.Day07
             var amplificationCircuit = new AmplificationCircuit(program);
 
             amplificationCircuit.Run(phaseSequence);
+
+            return amplificationCircuit.MaxThrusterSignal;
+        }
+    }
+    public class When_calcultaing_max_thrust_signal_with_feedback_loop
+    {
+        [TestCase("3,26,1001,26,-4,26,3,27,1002,27,2,27,1,27,26,27,4,27,1001,28,-1,28,1005,28,6,99,0,0,5", new[]{9,8,7,6,5}, ExpectedResult = 139629729)]
+        [TestCase("3,52,1001,52,-5,52,3,53,1,52,56,54,1007,54,5,55,1005,55,26,1001,54,-5,54,1105,1,12,1,53,54,53,1008,54,0,55,1001,55,1,55,2,53,55,53,4,53,1001,56,-1,56,1005,56,6,99,0,0,0,0,10", new[]{9,7,8,5,6}, ExpectedResult = 18216)]
+        public int Then_max_is_correct(string program, int[] phaseSequence)
+        {
+            var amplificationCircuit = new AmplificationCircuit(program);
+
+            amplificationCircuit.RunLooped(phaseSequence);
 
             return amplificationCircuit.MaxThrusterSignal;
         }
@@ -46,9 +58,16 @@ namespace SantasSpacecraft.Tests.Day07
             Assert.That(result, Is.EqualTo(17406));
         }
 
+        [Test]
         public void Part_2()
         {
-            
+            var amplificationCircuit = new AmplificationCircuit(_testInput);
+
+            amplificationCircuit.FindHighestSignalFeedbackLoop();
+
+            var result = amplificationCircuit.MaxThrusterSignal;
+
+            Assert.That(result, Is.EqualTo(1047153));
         }
     }
 }
