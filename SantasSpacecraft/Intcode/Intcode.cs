@@ -1,131 +1,147 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using Intcode.Memory;
 
 namespace Intcode
 {
     public class Intcode
     {
-        public Intcode(string str)
+        public Intcode(IMemory memory, int input)
         {
-            _memory = SetInitialState(str);
+            _memory = memory;
+            _input = input;
+        }
+        public Intcode(IMemory memory)
+        {
+            _memory = memory;
+        }
+        
+        private readonly int? _input;
+
+        private int _instructionPointer;
+
+        private int NextPointer => ++_instructionPointer;
+
+        private readonly List<int> _output = new List<int>();
+
+        public int? Output()
+        {
+            return _output.Count > 0 ? _output.Last() : (int?) null;
         }
 
-        private readonly int[] _memory;
-
-        public int[] GetState()
-        {
-            return _memory;
-        }
+        private readonly IMemory _memory;
 
         public void ProcessInstructions()
         {
-            var i = 0;
-            var continueProcessing = true;
-            while (continueProcessing)
+            while (HandleInstruction())
             {
-                continueProcessing = HandleInstruction(i, out int j);
-                i = j;
             }
         }
 
         public int FindNounVerb(int targetOutput)
         {
-            var initialState = (int[])GetState().Clone();
-
             for (var i = 0; i < 100; i++)
             {
                 for (var j = 0; j < 100; j++)
                 {
-                    SetValue(1, i);
-                    SetValue(2, j);
+                    _memory.SetValue(1, i);
+                    _memory.SetValue(2, j);
                     ProcessInstructions();
-                    var result = GetState()[0];
+                    var result = _memory.GetState()[0];
                     if (result == targetOutput)
                     {
                         return (100 * i) + j;
                     }
-                    ResetState(initialState);
+                    _memory.ResetState();
                 }
             }
             return 0;
         }
 
-        private static int[] SetInitialState(string str)
+        private bool HandleInstruction()
         {
-            return str.Split(",").Select(s => int.Parse(s.Trim())).ToArray();
-        }
+            var (oppCode, modes) = GetInstruction();
 
-        public void ResetState()
-        {
-            SetValue(1, 12);
-            SetValue(2, 2);
-        }
-
-        private void ResetState(int[] initialState)
-        {
-            for (int i = 0; i < initialState.Length; i++)
+            if (oppCode == OppCode.Input)
             {
-                SetValue(i, initialState[i]);
+                _memory.SetValue(_memory.GetValue(NextPointer), _input.Value);
             }
-        }
-
-        private bool HandleInstruction(int instructionPointer, out int nextInstructionPoninter)
-        {
-            var oppCode = (OppCode)_memory[instructionPointer];
-
-            switch (oppCode)
+            else if (oppCode == OppCode.Output)
             {
-                case OppCode.Terminate:
-                    nextInstructionPoninter = instructionPointer + 1;
-                    return false;
-                case OppCode.Add:
-                    Add(instructionPointer);
-                    nextInstructionPoninter = instructionPointer + 4;
-                    break;
-                case OppCode.Multiply:
-                    Multiply(instructionPointer);
-                    nextInstructionPoninter = instructionPointer + 4;
-                    break;
-                default:
-                    throw new ApplicationException($"Unknown OppCode {oppCode}");
+                _output.Add(GetValue(modes[0]));
             }
+            else if (oppCode == OppCode.Terminate)
+            {
+                return false;
+            }
+            else
+            {
+                var value1 = GetValue(modes[0]);
+                var value2 = GetValue(modes[1]);
+
+                switch (oppCode)
+                {
+                    case OppCode.Add:
+                        _memory.SetValue(GetValue(Mode.Immediate), value1 + value2);
+                        break;
+                    case OppCode.Multiply:
+                        _memory.SetValue(GetValue(Mode.Immediate), value1 * value2);
+                        break;
+                    case OppCode.JumpTrue:
+                        if(value1 != 0)
+                        {
+                            _instructionPointer = value2; 
+                            return true; 
+                        }
+                        break;
+                    case OppCode.JumpFalse:
+                        if(value1 == 0)
+                        {
+                            _instructionPointer = value2; 
+                            return true; 
+                        }
+                        break;
+                    case OppCode.LessThan:
+                        _memory.SetValue(GetValue(Mode.Immediate), value1 < value2 ? 1 : 0);
+                        break;
+                    case OppCode.Equals:
+                        _memory.SetValue(GetValue(Mode.Immediate), value1 == value2 ? 1 : 0);
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException($"Unknown OppCode '{oppCode}'!");
+                }
+            }
+
+            _ = NextPointer;
 
             return true;
         }
 
-        private void Add(int instructionPointer)
+        public (OppCode oppCode, Mode[] modes) GetInstruction()
         {
-            var value1Address = GetValue(instructionPointer + 1);
-            var value2Address = GetValue(instructionPointer + 2);
-            var value3Address = GetValue(instructionPointer + 3);
+            var instruction = _memory.GetValue(_instructionPointer);
 
-            SetValue(value3Address, GetValue(value1Address) + GetValue(value2Address));
+            return (GetOppCode(instruction), GetParameterModes(instruction));
         }
 
-        private void Multiply(int instructionPointer)
+        public static OppCode GetOppCode(int instruction)
         {
-            var value1Address = GetValue(instructionPointer + 1);
-            var value2Address = GetValue(instructionPointer + 2);
-            var value3Address = GetValue(instructionPointer + 3);
-
-            SetValue(value3Address, GetValue(value1Address) * GetValue(value2Address));
+            return (OppCode) (instruction % 100);
         }
 
-        private int GetValue(int address)
+        public static Mode[] GetParameterModes(int instruction)
         {
-            return _memory[address];
+            return instruction.ToString("D5").Remove(3).Reverse()
+                .Select(c => Enum.Parse<Mode>(c.ToString()))
+                .ToArray();
         }
 
-        private void SetValue(int address, int newValue)
+        private int GetValue(Mode mode)
         {
-            _memory[address] = newValue;
+            return mode == Mode.Position
+                ? _memory.GetValue(_memory.GetValue(NextPointer))
+                : _memory.GetValue(NextPointer);
         }
-    }
-
-    public enum OppCode
-    {
-        Add = 1,
-        Multiply,
-        Terminate = 99
     }
 }
