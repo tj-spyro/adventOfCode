@@ -14,6 +14,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PasswordFinder", "PasswordF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrbitalComputer", "OrbitalComputer\OrbitalComputer.csproj", "{17BC9831-08FF-49CE-95CC-5E4DA7FBC49E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThrusterAmplification", "ThrusterAmplification\ThrusterAmplification.csproj", "{3726DDF6-E04C-4091-8305-C905C59070E2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{17BC9831-08FF-49CE-95CC-5E4DA7FBC49E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17BC9831-08FF-49CE-95CC-5E4DA7FBC49E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17BC9831-08FF-49CE-95CC-5E4DA7FBC49E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3726DDF6-E04C-4091-8305-C905C59070E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3726DDF6-E04C-4091-8305-C905C59070E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3726DDF6-E04C-4091-8305-C905C59070E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3726DDF6-E04C-4091-8305-C905C59070E2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

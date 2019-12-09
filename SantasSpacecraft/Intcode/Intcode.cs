@@ -10,18 +10,32 @@ namespace Intcode
         public Intcode(IMemory memory, int input)
         {
             _memory = memory;
-            _input = input;
+            AddToInputQueue(input);
         }
+
         public Intcode(IMemory memory)
         {
             _memory = memory;
         }
-        
-        private readonly int? _input;
+
+        private int? GetInput()
+        { 
+            return _inputQueue. Count == 0 ? (int?) null : _inputQueue.Dequeue();
+        }
+
+    private readonly Queue<int> _inputQueue = new Queue<int>();
+
+        public void AddToInputQueue(int input)
+        {
+            _inputQueue.Enqueue(input);
+        }
 
         private int _instructionPointer;
 
-        private int NextPointer => ++_instructionPointer;
+        private int NextPointer()
+        {
+            return ++_instructionPointer;
+        }
 
         private readonly List<int> _output = new List<int>();
 
@@ -65,7 +79,7 @@ namespace Intcode
 
             if (oppCode == OppCode.Input)
             {
-                _memory.SetValue(_memory.GetValue(NextPointer), _input.Value);
+                _memory.SetValue(_memory.GetValue(NextPointer()), GetInput().Value);
             }
             else if (oppCode == OppCode.Output)
             {
@@ -113,7 +127,7 @@ namespace Intcode
                 }
             }
 
-            _ = NextPointer;
+            _ = NextPointer();
 
             return true;
         }
@@ -140,8 +154,8 @@ namespace Intcode
         private int GetValue(Mode mode)
         {
             return mode == Mode.Position
-                ? _memory.GetValue(_memory.GetValue(NextPointer))
-                : _memory.GetValue(NextPointer);
+                ? _memory.GetValue(_memory.GetValue(NextPointer()))
+                : _memory.GetValue(NextPointer());
         }
     }
 }

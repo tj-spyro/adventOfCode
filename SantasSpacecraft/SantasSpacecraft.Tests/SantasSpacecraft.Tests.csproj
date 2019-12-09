@@ -26,5 +26,6 @@
     <ProjectReference Include="..\Intcode\Intcode.csproj" />
     <ProjectReference Include="..\OrbitalComputer\OrbitalComputer.csproj" />
     <ProjectReference Include="..\PasswordFinder\PasswordFinder.csproj" />
+    <ProjectReference Include="..\ThrusterAmplification\ThrusterAmplification.csproj" />
   </ItemGroup>
 </Project>
