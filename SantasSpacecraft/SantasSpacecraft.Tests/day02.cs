@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using System.Linq;
-using Intcode;
 using Intcode.Memory;
 using NUnit.Framework;
 

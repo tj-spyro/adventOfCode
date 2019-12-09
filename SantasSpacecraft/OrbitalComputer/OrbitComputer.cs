@@ -33,16 +33,16 @@ namespace OrbitalComputer
 
                 _orbits.Add(orbiter, (orbitee, new List<string>()));
             }
-
-            foreach (var orbit in _orbits)
-            {
-                PopulateIndirectOrbits(orbit.Key);
-            }
         }
 
         public int CalculateMapDataChecksum()
         {
             Initialise();
+
+            foreach (var orbit in _orbits)
+            {
+                PopulateIndirectOrbits(orbit.Key);
+            }
 
             return _orbits.Sum(o => o.Value.indirect.Count);
         }
@@ -50,6 +50,11 @@ namespace OrbitalComputer
         public int CalculateOrbitalTransfers(string from, string to)
         {
             Initialise();
+
+            foreach (var orbit in _orbits)
+            {
+                PopulateIndirectOrbits(orbit.Key);
+            }
 
             var fromOrbits = _orbits[from].indirect;
             var toOrbits = _orbits[to].indirect;
