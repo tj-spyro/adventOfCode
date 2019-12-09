@@ -24,6 +24,7 @@
     <ProjectReference Include="..\CrossedWires\CrossedWires.csproj" />
     <ProjectReference Include="..\FuelCounterUpper\FuelCounterUpper.csproj" />
     <ProjectReference Include="..\Intcode\Intcode.csproj" />
+    <ProjectReference Include="..\OrbitalComputer\OrbitalComputer.csproj" />
     <ProjectReference Include="..\PasswordFinder\PasswordFinder.csproj" />
   </ItemGroup>
 </Project>
