@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SpaceImageFormat
@@ -47,6 +48,11 @@ namespace SpaceImageFormat
             }
 
             return rows.ToArray();
+        }
+
+        public override string ToString()
+        {
+            return string.Join("\r\n", GetJaggedArray().Select(j => new string(j)));
         }
     }
 }

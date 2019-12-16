@@ -164,6 +164,37 @@ namespace SantasSpacecraft.Tests.Day08
         }
     }
 
+    [TestFixture("0222112222120000", 2, 2)]
+    public class When_rendering_image
+    {
+        public When_rendering_image(string input, int width, int height)
+        {
+            _input = input;
+            _height = height;
+            _width = width;
+        }
+
+        private readonly string _input;
+        private readonly int _width;
+        private readonly int _height;
+        private SpaceImage _image;
+        private ImageReader _imageReader;
+
+        [SetUp]
+        public void SetUp()
+        {
+            var startingImage = new SpaceImage(_input, _width, _height);
+            _imageReader = new ImageReader(startingImage);
+            _image = _imageReader.FlattenImage();
+        }
+
+        [Test]
+        public void Then_the_image_is_flattened_correctly()
+        {
+            Assert.That(_image.Layers[0].ToString(), Is.EqualTo("_■\r\n■_"));
+        }
+    }
+
     [TestFixture]
     public class Solve
     {
@@ -192,7 +223,13 @@ namespace SantasSpacecraft.Tests.Day08
         [Test]
         public void Part_2()
         {
-            
+            var startingImage = new SpaceImage(_testInput, 25, 6);
+
+            var imageReader = new ImageReader(startingImage);
+
+            var flattenedImage = imageReader.FlattenImage();
+
+            Assert.That(flattenedImage.Layers[0].ToString(), Is.EqualTo("_■■____■■_■■■■_■____■■■__\r\n■__■____■____■_■____■__■_\r\n■_______■___■__■____■__■_\r\n■_______■__■___■____■■■__\r\n■__■_■__■_■____■____■____\r\n_■■___■■__■■■■_■■■■_■____"));
         }
     }
 }
