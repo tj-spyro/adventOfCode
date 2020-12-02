@@ -1,22 +1,24 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace PasswordValidator
+namespace PasswordValidator.Policies
 {
-    public class PasswordPolicy
+    public class OccurrencePasswordPolicy : IPasswordPolicy
     {
         private readonly int _minimumOccurrences;
         private readonly int _maximumOccurrences;
         private readonly string _letter;
 
-        private PasswordPolicy(int minimumOccurrences, int maximumOccurrences, string letter)
+        public PolicyType Type => PolicyType.Occurrence;
+
+        private OccurrencePasswordPolicy(int minimumOccurrences, int maximumOccurrences, string letter)
         {
             _minimumOccurrences = minimumOccurrences;
             _maximumOccurrences = maximumOccurrences;
             _letter = letter;
         }
 
-        public static PasswordPolicy CreatePasswordPolicy(string policyString)
+        public static IPasswordPolicy CreatePasswordPolicy(string policyString)
         {
             var splitOnSpace = policyString.Split(' ');
 
@@ -41,14 +43,14 @@ namespace PasswordValidator
             }
             if (parsedMinValue < 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(parsedMinValue), parsedMinValue, "Must be greater than or equal to zero.");
+                throw new ArgumentOutOfRangeException(nameof(parsedMinValue), parsedMinValue, "Must be greater than zero.");
             }
             if (parsedMinValue > parsedMaxValue)
             {
                 throw new ArgumentException("Min value cannot be greater than max value.");
             }
 
-            return new PasswordPolicy(parsedMinValue, parsedMaxValue, letter);
+            return new OccurrencePasswordPolicy(parsedMinValue, parsedMaxValue, letter);
         }
 
         public bool ValidatePassword(string password)

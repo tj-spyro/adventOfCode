@@ -1,16 +1,16 @@
-﻿namespace PasswordValidator
+﻿using PasswordValidator.Policies;
+
+namespace PasswordValidator
 {
     public class PasswordValidationResult
     {
-        public PasswordValidationResult(string input)
+        public PasswordValidationResult(string password, IPasswordPolicy policy)
         {
-            var parts = input.Split(':');
-
-            Policy = PasswordPolicy.CreatePasswordPolicy(parts[0].Trim());
-            Password = parts[1].Trim();
+            Policy = policy;
+            Password = password;
         }
 
-        public PasswordPolicy Policy;
+        public IPasswordPolicy Policy;
         public string Password;
         public bool Result => Policy.ValidatePassword(Password);
     }

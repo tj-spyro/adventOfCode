@@ -7,24 +7,24 @@ using PasswordValidator.Policies;
 // ReSharper disable CheckNamespace
 // ReSharper disable StringLiteralTypo
 
-namespace Tests.Day02Part1
+namespace Tests.Day02Part2
 {
     [TestFixture]
-    public class When_validating_a_password_with_occurrence_password_policy
+    public class When_validating_a_password_with_positional_password_policy
     {
         [TestCase("1-3 a", "abcde", true)]
         [TestCase("1-3 b", "cdefg", false)]
-        [TestCase("2-9 c", "ccccccccc", true)]
+        [TestCase("2-9 c", "ccccccccc", false)]
         public void Then_the_validation_response_is_correct(string policy, string password, bool expectedResult)
         {
-            var passwordPolicy = OccurrencePasswordPolicy.CreatePasswordPolicy(policy);
+            var passwordPolicy = PositionalPasswordPolicy.CreatePasswordPolicy(policy);
 
             Assert.That(passwordPolicy.ValidatePassword(password), Is.EqualTo(expectedResult));
         }
     }
 
     [TestFixture]
-    public class When_counting_the_valid_example_passwords_with_occurrence_password_policy
+    public class When_counting_the_valid_example_passwords_with_positional_password_policy
     {
         private PasswordProcessor _processor;
 
@@ -33,18 +33,18 @@ namespace Tests.Day02Part1
         {
             var testData = new[] {"1-3 a: abcde", "1-3 b: cdefg", "2-9 c: ccccccccc"};
 
-            _processor = new PasswordProcessor(testData, PolicyType.Occurrence);
+            _processor = new PasswordProcessor(testData, PolicyType.Positional);
         }
         
         [Test]
         public void Then_the_correct_result_is_returned()
         {
-            Assert.That(_processor.ValidPasswordsCount(), Is.EqualTo(2));
+            Assert.That(_processor.ValidPasswordsCount(), Is.EqualTo(1));
         }
     }
 
     [TestFixture]
-    public class When_counting_the_valid_passwords_with_occurrence_password_policy
+    public class When_counting_the_valid_passwords_with_positional_password_policy
     {
         private PasswordProcessor _processor;
 
@@ -53,13 +53,13 @@ namespace Tests.Day02Part1
         {
             var data = File.ReadAllLines("Data/Day02.txt");
 
-            _processor = new PasswordProcessor(data, PolicyType.Occurrence);
+            _processor = new PasswordProcessor(data, PolicyType.Positional);
         }
 
         [Test]
         public void Then_the_correct_result_is_returned()
         {
-            Assert.That(_processor.ValidPasswordsCount(), Is.EqualTo(458));
+            Assert.That(_processor.ValidPasswordsCount(), Is.EqualTo(342));
         }
     }
 }
