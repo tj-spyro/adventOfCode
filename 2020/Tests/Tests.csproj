@@ -15,10 +15,14 @@
   <ItemGroup>
     <ProjectReference Include="..\ExpenseReport\ExpenseReport.csproj" />
     <ProjectReference Include="..\Helpers\PuzzleInput.csproj" />
+    <ProjectReference Include="..\PasswordValidator\PasswordValidator.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <None Update="Data\Day01.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\Day02.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
