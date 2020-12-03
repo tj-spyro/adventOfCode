@@ -1,21 +1,28 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Tools;
 
 namespace ExpenseReport
 {
-    public class ReportAnalyser
+    public class ReportAnalyser : IReportAnalyser
     {
-        private readonly int[] _report;
+        private readonly IPuzzleInput _puzzleInput;
+        private const string PuzzleInputUrl = "https://adventofcode.com/2020/day/1/input";
 
-        public ReportAnalyser(int[] report)
+        private int[] _report;
+        private IEnumerable<int> Report => _report ??= _puzzleInput.GetPuzzleInputAsArray(PuzzleInputUrl).Select(int.Parse).ToArray();
+
+        public ReportAnalyser(IPuzzleInput puzzleInput)
         {
-            _report = report;
+            _puzzleInput = puzzleInput;
         }
 
         public (int, int) FindTwoValuesTotalling(int sumOfValues)
         {
-            foreach (var value1 in _report)
+            foreach (var value1 in Report)
             {
-                foreach (var value2 in _report)
+                foreach (var value2 in Report)
                 {
                     if (value1 + value2 == sumOfValues)
                     {
@@ -29,11 +36,11 @@ namespace ExpenseReport
 
         public (int, int, int) FindThreeValuesTotalling(int sumOfValues)
         {
-            foreach (var value1 in _report)
+            foreach (var value1 in Report)
             {
-                foreach (var value2 in _report)
+                foreach (var value2 in Report)
                 {
-                    foreach (var value3 in _report)
+                    foreach (var value3 in Report)
                     {
                         if (value1 + value2 + value3 == sumOfValues)
                         {

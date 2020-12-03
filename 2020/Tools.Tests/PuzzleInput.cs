@@ -30,7 +30,7 @@ namespace ToolsTests.PuzzleInputTests
         [Test]
         public void Then_the_correct_number_of_entries_are_returned()
         {
-            Assert.That(_returns.Length, Is.EqualTo(201));
+            Assert.That(_returns.Length, Is.EqualTo(200));
         }
     }
 }
