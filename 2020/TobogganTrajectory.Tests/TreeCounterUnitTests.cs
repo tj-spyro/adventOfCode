@@ -1,4 +1,7 @@
-﻿using NUnit.Framework;
+﻿using Moq;
+using NUnit.Framework;
+using Tools;
+
 // ReSharper disable CheckNamespace
 // ReSharper disable InconsistentNaming
 
@@ -12,7 +15,10 @@ namespace TobogganTrajectory.Tests.TreeCounterUnitTests
         [TestCase("..##.......|#...#...#..|.#....#..#.|..#.#...#.#|.#...##..#.|..#.##.....|.#.#.#....#|.#........#|#.##...#...|#...##....#|.#..#...#.#|", 3,1, 7)]
         public void Then_all_the_encountered_trees_are_counted(string input, int right, int down, int expectedResult)
         {
-            var map = new Map(input.Split('|'));
+            var mockPuzzleInput = new Mock<IPuzzleInput>();
+            mockPuzzleInput.Setup(p => p.GetPuzzleInputAsArray(It.IsAny<string>())).Returns(input.Split('|'));
+
+            var map = new Map(mockPuzzleInput.Object);
 
             var sut = new TreeCounter(map);
 

@@ -1,5 +1,7 @@
-using System.Collections.Generic;
+using Moq;
 using NUnit.Framework;
+using Tools;
+
 // ReSharper disable CheckNamespace
 // ReSharper disable InconsistentNaming
 
@@ -12,7 +14,10 @@ namespace TobogganTrajectory.Tests.MapUnitTests
         [TestCase(".#", false)]
         public void The_result_is_correct(string input, bool expectedResult)
         {
-            var map = new Map(new List<string>{input});
+            var mockPuzzleInput = new Mock<IPuzzleInput>();
+            mockPuzzleInput.Setup(p => p.GetPuzzleInputAsArray(It.IsAny<string>())).Returns(new []{ input });
+
+            var map = new Map(mockPuzzleInput.Object);
 
             map.Move(0, 0);
 
@@ -27,7 +32,10 @@ namespace TobogganTrajectory.Tests.MapUnitTests
         [TestCase("#.|.#", false)]
         public void The_result_is_correct(string input, bool expectedResult)
         {
-            var map = new Map(input.Split('|'));
+            var mockPuzzleInput = new Mock<IPuzzleInput>();
+            mockPuzzleInput.Setup(p => p.GetPuzzleInputAsArray(It.IsAny<string>())).Returns(input.Split('|'));
+
+            var map = new Map(mockPuzzleInput.Object);
 
             map.Move(0, 1);
 
@@ -42,7 +50,10 @@ namespace TobogganTrajectory.Tests.MapUnitTests
         [TestCase("#.", false)]
         public void The_result_is_correct(string input, bool expectedResult)
         {
-            var map = new Map(input.Split('|'));
+            var mockPuzzleInput = new Mock<IPuzzleInput>();
+            mockPuzzleInput.Setup(p => p.GetPuzzleInputAsArray(It.IsAny<string>())).Returns(input.Split('|'));
+
+            var map = new Map(mockPuzzleInput.Object);
 
             map.Move(1, 0);
 
@@ -57,7 +68,10 @@ namespace TobogganTrajectory.Tests.MapUnitTests
         [TestCase(".|#", 2, false)]
         public void The_result_is_correct(string input,int down, bool expectedResult)
         {
-            var map = new Map(input.Split('|'));
+            var mockPuzzleInput = new Mock<IPuzzleInput>();
+            mockPuzzleInput.Setup(p => p.GetPuzzleInputAsArray(It.IsAny<string>())).Returns(input.Split('|'));
+
+            var map = new Map(mockPuzzleInput.Object);
 
             var result = map.Move(0, down);
 
@@ -72,7 +86,10 @@ namespace TobogganTrajectory.Tests.MapUnitTests
         [TestCase("#..|...", 3, true)]
         public void The_result_is_correct(string input, int right, bool expectedResult)
         {
-            var map = new Map(input.Split('|'));
+            var mockPuzzleInput = new Mock<IPuzzleInput>();
+            mockPuzzleInput.Setup(p => p.GetPuzzleInputAsArray(It.IsAny<string>())).Returns(input.Split('|'));
+
+            var map = new Map(mockPuzzleInput.Object);
 
             map.Move(right, 0);
 

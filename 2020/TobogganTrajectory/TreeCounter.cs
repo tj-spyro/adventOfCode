@@ -2,9 +2,9 @@
 {
     public class TreeCounter : ITreeCounter
     {
-        private readonly Map _map;
+        private readonly IMap _map;
 
-        public TreeCounter(Map map)
+        public TreeCounter(IMap map)
         {
             _map = map;
         }

@@ -8,12 +8,9 @@ namespace TobogganTrajectory
     {
         static void Main()
         {
-            var container = UnityCreator.BuildDefaultUnityContainer();
+            var container = BuildUnityContainer();
 
-            var map = new Map(container.Resolve<IPuzzleInput>()
-                .GetPuzzleInputAsArray("https://adventofcode.com/2020/day/3/input"));
-
-            var treeCounter = new TreeCounter(map);
+            var treeCounter = container.Resolve<ITreeCounter>();
 
             Console.WriteLine($"Part 1: {treeCounter.Run(3,1)}");
 
@@ -25,6 +22,14 @@ namespace TobogganTrajectory
             product *= treeCounter.Run(1, 2);
 
             Console.WriteLine($"Part 2: {product}");
+        }
+
+        private static IUnityContainer BuildUnityContainer()
+        {
+            var container = UnityCreator.BuildDefaultUnityContainer();
+            container.RegisterType<IMap, Map>();
+            container.RegisterType<ITreeCounter, TreeCounter>();
+            return container;
         }
     }
 }
