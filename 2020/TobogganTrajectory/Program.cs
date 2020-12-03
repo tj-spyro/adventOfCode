@@ -16,6 +16,15 @@ namespace TobogganTrajectory
             var treeCounter = new TreeCounter(map);
 
             Console.WriteLine($"Part 1: {treeCounter.Run(3,1)}");
+
+            long product = 1;
+            product *= treeCounter.Run(1, 1);
+            product *= treeCounter.Run(3, 1);
+            product *= treeCounter.Run(5, 1);
+            product *= treeCounter.Run(7, 1);
+            product *= treeCounter.Run(1, 2);
+
+            Console.WriteLine($"Part 2: {product}");
         }
     }
 }

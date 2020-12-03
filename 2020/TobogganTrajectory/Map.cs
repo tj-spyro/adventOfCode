@@ -35,5 +35,11 @@ namespace TobogganTrajectory
 
             return _yCoordinate < _mapHeight - 1;
         }
+
+        public void Reset()
+        {
+            _xCoordinate = 0;
+            _yCoordinate = 0;
+        }
     }
 }

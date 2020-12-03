@@ -11,7 +11,8 @@
 
         public int Run(int right, int down)
         {
-            var counter =0;
+            _map.Reset();
+            var counter = 0;
 
             while (_map.Move(right, down))
             {
