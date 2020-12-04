@@ -2,6 +2,7 @@
 using Moq;
 using NUnit.Framework;
 using Tools;
+// ReSharper disable InconsistentNaming
 
 // ReSharper disable CheckNamespace
 namespace ToolsTests.PuzzleInputTests

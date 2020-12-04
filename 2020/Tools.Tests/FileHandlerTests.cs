@@ -1,6 +1,7 @@
 ﻿using System.IO.Abstractions.TestingHelpers;
 using NUnit.Framework;
 using Tools;
+// ReSharper disable InconsistentNaming
 
 // ReSharper disable once CheckNamespace
 namespace ToolsTests.FileHandlerTests
