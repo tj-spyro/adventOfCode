@@ -23,5 +23,15 @@ namespace BinaryBoarding
         }
 
         public int MaxSeatId => BoardingPasses.Max(bp => bp.SeatId);
+
+        public int FindSeat()
+        {
+            var seatIdsPlusOne = BoardingPasses.Select(bp => bp.SeatId + 1);
+            var seatIdsMinusOne = BoardingPasses.Select(bp => bp.SeatId - 1);
+
+            var overlappingIds = seatIdsPlusOne.Intersect(seatIdsMinusOne);
+
+            return overlappingIds.Except(BoardingPasses.Select(bp => bp.SeatId)).Max();
+        }
     }
 }
