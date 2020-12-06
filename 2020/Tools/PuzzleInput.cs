@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 
 namespace Tools
@@ -36,6 +37,15 @@ namespace Tools
             var lines = webpage.Split("\n");
 
             return string.IsNullOrEmpty(lines[^1]) ? lines[..^1] : lines;
+        }
+
+        public IEnumerable<string> GetPuzzleInputSplitByBlankLines(string url)
+        {
+            var webpage = GetPuzzleInput(url);
+
+            return webpage.Contains("\r\n\r\n")
+                ? webpage.Split("\r\n\r\n")
+                : webpage.Split("\n\n");
         }
     }
 }
