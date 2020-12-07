@@ -3,33 +3,33 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenseReport", "ExpenseReport\ExpenseReport.csproj", "{C1FA0CB8-FC57-46D0-B253-E9FAEDAE5DB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01-ReportRepair", "01-ReportRepair\01-ReportRepair.csproj", "{C1FA0CB8-FC57-46D0-B253-E9FAEDAE5DB3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PasswordValidator", "PasswordValidator\PasswordValidator.csproj", "{C372B265-A035-41CA-82B3-3FA7ADE4F8B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02-PasswordPhilosophy", "02-PasswordPhilosophy\02-PasswordPhilosophy.csproj", "{C372B265-A035-41CA-82B3-3FA7ADE4F8B2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TobogganTrajectory", "TobogganTrajectory\TobogganTrajectory.csproj", "{88C1696F-D187-4B7C-9A7C-BBE9025969D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03-TobogganTrajectory", "03-TobogganTrajectory\03-TobogganTrajectory.csproj", "{88C1696F-D187-4B7C-9A7C-BBE9025969D9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TobogganTrajectory.Tests", "TobogganTrajectory.Tests\TobogganTrajectory.Tests.csproj", "{73F7CD6C-473C-4837-B96E-ECE61B268C31}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03-TobogganTrajectory.Tests", "03-TobogganTrajectory.Tests\03-TobogganTrajectory.Tests.csproj", "{73F7CD6C-473C-4837-B96E-ECE61B268C31}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tools", "Tools\Tools.csproj", "{F33FEF77-C130-450A-AAF1-D7D218BE201D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tools.Tests", "Tools.Tests\Tools.Tests.csproj", "{F8088611-DA22-4465-B530-036580533DDC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenseReport.Tests", "ExpenseReport.tests\ExpenseReport.Tests.csproj", "{14E5B67F-7C5E-4A4D-9DA9-BF837A3FD979}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01-ReportRepair.Tests", "01-ReportRepair.tests\01-ReportRepair.Tests.csproj", "{14E5B67F-7C5E-4A4D-9DA9-BF837A3FD979}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PasswordValidator.Tests", "PasswordValidator.Tests\PasswordValidator.Tests.csproj", "{90544902-E446-4565-ABDD-CC8A38BEF11A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02-PasswordPhilosophy.Tests", "02-PasswordPhilosophy.Tests\02-PasswordPhilosophy.Tests.csproj", "{90544902-E446-4565-ABDD-CC8A38BEF11A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PassportProcessing", "PassportProcessing\PassportProcessing.csproj", "{D9E84621-6FE7-4870-B4E4-EF3EF9D079B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04-PassportProcessing", "04-PassportProcessing\04-PassportProcessing.csproj", "{D9E84621-6FE7-4870-B4E4-EF3EF9D079B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PassportProcessing.Tests", "PassportProcessing.Tests\PassportProcessing.Tests.csproj", "{5F68EA03-FBF7-47E4-A49C-7BFB69806FC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04-PassportProcessing.Tests", "04-PassportProcessing.Tests\04-PassportProcessing.Tests.csproj", "{5F68EA03-FBF7-47E4-A49C-7BFB69806FC1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinaryBoarding", "BinaryBoarding\BinaryBoarding.csproj", "{69D76EB1-28CF-43BF-AD0E-486D76A401EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05-BinaryBoarding", "05-BinaryBoarding\05-BinaryBoarding.csproj", "{69D76EB1-28CF-43BF-AD0E-486D76A401EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinaryBoarding.Tests", "BinaryBoarding.Tests\BinaryBoarding.Tests.csproj", "{031A37F6-6EA8-4A6E-90DF-D88150366AE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05-BinaryBoarding.Tests", "05-BinaryBoarding.Tests\05-BinaryBoarding.Tests.csproj", "{031A37F6-6EA8-4A6E-90DF-D88150366AE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCustoms", "CustomCustoms\CustomCustoms.csproj", "{E73EB22C-827D-4F4F-8860-E0DD0B3CFD0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "06-CustomCustoms", "06-CustomCustoms\06-CustomCustoms.csproj", "{E73EB22C-827D-4F4F-8860-E0DD0B3CFD0E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCustoms.Tests", "CustomCustoms.Tests\CustomCustoms.Tests.csproj", "{6E2881DE-ACE7-4667-94FF-CAB45969BBFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "06-CustomCustoms.Tests", "06-CustomCustoms.Tests\06-CustomCustoms.Tests.csproj", "{6E2881DE-ACE7-4667-94FF-CAB45969BBFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

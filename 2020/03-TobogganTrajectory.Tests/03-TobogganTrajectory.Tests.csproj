@@ -14,8 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PasswordValidator\PasswordValidator.csproj" />
-    <ProjectReference Include="..\Tools\Tools.csproj" />
+    <ProjectReference Include="..\03-TobogganTrajectory\03-TobogganTrajectory.csproj" />
   </ItemGroup>
 
 </Project>
