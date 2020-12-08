@@ -15,7 +15,7 @@ namespace HandheldHalting
             var repository = container.Resolve<IBootCode>();
 
             Console.WriteLine($"Part 1: {repository.Answer1()}");
-            //Console.WriteLine($"Part 2: {repository.Answer2()}");
+            Console.WriteLine($"Part 2: {repository.Answer2()}");
         }
 
         private static IUnityContainer BuildUnityContainer()

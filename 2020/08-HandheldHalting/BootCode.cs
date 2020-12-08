@@ -20,14 +20,54 @@ namespace HandheldHalting
 
         public int Answer1()
         {
+            var instructions = CopyInstructions();
+
+            return Execute(instructions).accumulator;
+        }
+
+        public int Answer2()
+        {
+            for (var i = 0; i < RawData.Length; i++)
+            {
+                var instructions = CopyInstructions();
+
+                var instruction = instructions[i];
+                var parts = instruction.Split(' ');
+                instruction = parts[0] switch
+                {
+                    "jmp" => instruction.Replace("jmp", "nop"),
+                    "nop" => instruction.Replace("nop", "jmp"),
+                    _ => instruction
+                };
+                instructions[i] = instruction;
+
+                var (accumulator, position) = Execute(instructions);
+                if (position == instructions.Length)
+                {
+                    return accumulator;
+                }
+            }
+
+            throw new ApplicationException("Not found!");
+        }
+
+        private string[] CopyInstructions()
+        {
+            var instructions = new string[RawData.Length];
+            Array.Copy(RawData, instructions, RawData.Length);
+            return instructions;
+        }
+
+        private (int accumulator, int position) Execute(string[] instructions)
+        {
             var accumulator = 0;
             var position = 0;
 
             var visitedPositions = new Queue<int>();
 
-            while (!visitedPositions.Contains(position) && position < RawData.Length)
+            while (!visitedPositions.Contains(position) && position < instructions.Length)
             {
-                var instruction = RawData[position];
+                var instruction = instructions[position];
                 var parts = instruction.Split(' ');
                 var operation = parts[0];
                 var argument = int.Parse(parts[1]);
@@ -54,7 +94,7 @@ namespace HandheldHalting
                 position = newPosition;
             }
 
-            return accumulator;
+            return (accumulator, position);
         }
     }
 }
