@@ -43,6 +43,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "09-EncodingError", "09-Enco
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "09-EncodingError.Tests", "09-EncodingError.Tests\09-EncodingError.Tests.csproj", "{4652F902-F30A-4EBC-BE25-2EFE0587FD05}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10-AdapterArray", "10-AdapterArray\10-AdapterArray.csproj", "{A63496E9-2D20-4C48-82CB-9FE427F3CDD7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10-AdapterArray.Tests", "10-AdapterArray.Tests\10-AdapterArray.Tests.csproj", "{66A9F06D-C82A-44EB-875D-B046F18203DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -293,6 +297,30 @@ Global
 		{4652F902-F30A-4EBC-BE25-2EFE0587FD05}.Release|x64.Build.0 = Release|Any CPU
 		{4652F902-F30A-4EBC-BE25-2EFE0587FD05}.Release|x86.ActiveCfg = Release|Any CPU
 		{4652F902-F30A-4EBC-BE25-2EFE0587FD05}.Release|x86.Build.0 = Release|Any CPU
+		{A63496E9-2D20-4C48-82CB-9FE427F3CDD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A63496E9-2D20-4C48-82CB-9FE427F3CDD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A63496E9-2D20-4C48-82CB-9FE427F3CDD7}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A63496E9-2D20-4C48-82CB-9FE427F3CDD7}.Debug|x64.Build.0 = Debug|Any CPU
+		{A63496E9-2D20-4C48-82CB-9FE427F3CDD7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A63496E9-2D20-4C48-82CB-9FE427F3CDD7}.Debug|x86.Build.0 = Debug|Any CPU
+		{A63496E9-2D20-4C48-82CB-9FE427F3CDD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A63496E9-2D20-4C48-82CB-9FE427F3CDD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A63496E9-2D20-4C48-82CB-9FE427F3CDD7}.Release|x64.ActiveCfg = Release|Any CPU
+		{A63496E9-2D20-4C48-82CB-9FE427F3CDD7}.Release|x64.Build.0 = Release|Any CPU
+		{A63496E9-2D20-4C48-82CB-9FE427F3CDD7}.Release|x86.ActiveCfg = Release|Any CPU
+		{A63496E9-2D20-4C48-82CB-9FE427F3CDD7}.Release|x86.Build.0 = Release|Any CPU
+		{66A9F06D-C82A-44EB-875D-B046F18203DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66A9F06D-C82A-44EB-875D-B046F18203DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66A9F06D-C82A-44EB-875D-B046F18203DF}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{66A9F06D-C82A-44EB-875D-B046F18203DF}.Debug|x64.Build.0 = Debug|Any CPU
+		{66A9F06D-C82A-44EB-875D-B046F18203DF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{66A9F06D-C82A-44EB-875D-B046F18203DF}.Debug|x86.Build.0 = Debug|Any CPU
+		{66A9F06D-C82A-44EB-875D-B046F18203DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66A9F06D-C82A-44EB-875D-B046F18203DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66A9F06D-C82A-44EB-875D-B046F18203DF}.Release|x64.ActiveCfg = Release|Any CPU
+		{66A9F06D-C82A-44EB-875D-B046F18203DF}.Release|x64.Build.0 = Release|Any CPU
+		{66A9F06D-C82A-44EB-875D-B046F18203DF}.Release|x86.ActiveCfg = Release|Any CPU
+		{66A9F06D-C82A-44EB-875D-B046F18203DF}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
